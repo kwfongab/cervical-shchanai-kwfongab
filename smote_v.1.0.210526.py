@@ -162,7 +162,8 @@ def workflow(maxcount, X_in, y_in):
         X_smn, y_smn = pipe_smn.fit_resample(X_train, y_train)
 
         thedata = [npadd(X_smn[i], y_smn[i]) for i in range(len(X_smn))]
-        DF(thedata).to_csv("Rebalanced_dataset_{0:2d}_with_{1:s}.csv".format(
+        count = '0'+str(count) if count < 10 else str(count)
+        DF(thedata).to_csv("Rebalanced_dataset_{0:s}_with_{1:s}.csv".format(
             count, "SMOTE_&_Near_Miss"), index=False)
 
         # random forest to be included in each sample manipulation (?)
